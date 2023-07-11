@@ -108,8 +108,8 @@ jobs:
     - name: Package builds
       run: |
         cd signed-builds
-        zip -r -j ../libvpx-${{ steps.version.outputs.current }}-windows-i686.zip libvpx-windows-i686
-        zip -r -j ../libvpx-${{ steps.version.outputs.current }}-windows-x86_64.zip libvpx-windows-x86_64
+        zip -r ../libvpx-${{ steps.version.outputs.current }}-windows-i686.zip libvpx-windows-i686
+        zip -r ../libvpx-${{ steps.version.outputs.current }}-windows-x86_64.zip libvpx-windows-x86_64
     - name: Create GitHub release with packages
       uses: softprops/action-gh-release@v1
       with:
