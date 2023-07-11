@@ -21,8 +21,8 @@ jobs:
         sudo apt install mingw-w64 mingw-w64-tools
     - name: Configure source
       run: |
-        mkdir build
-        CROSS=i686-w64-mingw32- ./configure --target=x86-win32-gcc --disable-examples --disable-docs --disable-unit-tests --enable-vp8 --enable-vp9 --enable-postproc --enable-vp9-postproc --enable-vp9-temporal-denoising --enable-vp9-highbitdepth --enable-webm-io --enable-libyuv --enable-runtime-cpu-detect --enable-multi-res-encoding --extra-cflags="-mstackrealign" --extra-cxxflags="-mstackrealign" --prefix=build
+        mkdir _build
+        CROSS=i686-w64-mingw32- ./configure --target=x86-win32-gcc --disable-examples --disable-docs --disable-unit-tests --enable-vp8 --enable-vp9 --enable-postproc --enable-vp9-postproc --enable-vp9-temporal-denoising --enable-vp9-highbitdepth --enable-webm-io --enable-libyuv --enable-runtime-cpu-detect --enable-multi-res-encoding --extra-cflags="-mstackrealign" --extra-cxxflags="-mstackrealign" --prefix=_build
     - name: Compile source
       run: make
     - name: Copy build
@@ -31,7 +31,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: libvpx-windows-i686
-        path: libvpx/build
+        path: libvpx/_build
   build-windows-x86_64:
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -49,8 +49,8 @@ jobs:
         sudo apt install mingw-w64 mingw-w64-tools
     - name: Configure source
       run: |
-        mkdir build
-        CROSS=x86_64-w64-mingw32- ./configure --target=x86_64-win64-gcc --disable-examples --disable-docs --disable-unit-tests --enable-vp8 --enable-vp9 --enable-postproc --enable-vp9-postproc --enable-vp9-temporal-denoising --enable-vp9-highbitdepth --enable-webm-io --enable-libyuv --enable-runtime-cpu-detect --enable-multi-res-encoding --extra-cflags="-mstackrealign" --extra-cxxflags="-mstackrealign" --prefix=build
+        mkdir _build
+        CROSS=x86_64-w64-mingw32- ./configure --target=x86_64-win64-gcc --disable-examples --disable-docs --disable-unit-tests --enable-vp8 --enable-vp9 --enable-postproc --enable-vp9-postproc --enable-vp9-temporal-denoising --enable-vp9-highbitdepth --enable-webm-io --enable-libyuv --enable-runtime-cpu-detect --enable-multi-res-encoding --extra-cflags="-mstackrealign" --extra-cxxflags="-mstackrealign" --prefix=_build
     - name: Compile source
       run: make
     - name: Copy build
@@ -59,7 +59,7 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: libvpx-windows-x86_64
-        path: libvpx/build
+        path: libvpx/_build
   sign-builds:
     runs-on: windows-latest
     timeout-minutes: 30
